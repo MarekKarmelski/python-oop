@@ -4,10 +4,11 @@
 """BMI class."""
 
 
-class Bmi:
+class BMI:
 
     __weight = None
     __height = None
+    __rate = 1
 
     def set_weight(self, person_weight):
         """Set width."""
@@ -24,8 +25,8 @@ class Bmi:
             print('Wrong height.')
 
     def calculate(self):
-        """Calculate bmi."""
+        """Calculate BMI."""
         if self.__weight is None or self.__height is None:
             print('weight or height is incorrect.')
         else:
-            return self.__weight / self.__height ** 2
+            return (self.__weight / self.__height ** 2) / self.__rate
