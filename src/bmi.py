@@ -8,25 +8,39 @@ class BMI:
 
     __weight = None
     __height = None
+    __bmi = None
     __rate = 1
 
-    def set_weight(self, person_weight):
-        """Set width."""
-        if isinstance(person_weight, (int, float)):
-            self.__weight = person_weight
+    def __init__(self, weight=None, height=None):
+        """Init BMI class."""
+        if weight is not None and isinstance(weight, (float, int)):
+            self.__set_weight(weight)
         else:
             print('Wrong weight.')
-
-    def set_height(self, person_height):
-        """Set height."""
-        if isinstance(person_height, (int, float)):
-            self.__height = person_height
+        if height is not None and isinstance(height, float):
+            self.__set_height(height)
         else:
             print('Wrong height.')
 
-    def calculate(self):
-        """Calculate BMI."""
-        if self.__weight is None or self.__height is None:
-            print('weight or height is incorrect.')
+    def get_bmi(self):
+        """Return BMI."""
+        if self.__calculate() is True:
+            return self.__bmi
         else:
-            return (self.__weight / self.__height ** 2) / self.__rate
+            return False
+
+    def __set_weight(self, person_weight):
+        """Set width."""
+        self.__weight = person_weight
+
+    def __set_height(self, person_height):
+        """Set height."""
+        self.__height = person_height
+
+    def __calculate(self):
+        """Calculate BMI."""
+        if self.__weight is not None and self.__height is not None:
+            self.__bmi = (self.__weight / self.__height ** 2) / self.__rate
+            return True
+        else:
+            return False
