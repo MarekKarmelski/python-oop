@@ -5,6 +5,7 @@
 
 
 class Figure:
+
     def __init__(self, *args):
         self.data = args
         for arg in args:

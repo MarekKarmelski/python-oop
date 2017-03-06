@@ -9,6 +9,7 @@ class BMI:
     __weight = None
     __height = None
     __bmi = None
+    __perfect_bmi = 21.75
     __rate = 1
 
     def __init__(self, weight=None, height=None):
@@ -28,6 +29,31 @@ class BMI:
             return self.__bmi
         else:
             return False
+
+    def norm(self):
+        """Is BMI is in norm"""
+        if self.__calculate() is True:
+            if self.__bmi < (18.5 / self.__rate):
+                return -1
+            elif self.__bmi >= (25 / self.__rate):
+                return 1
+            else:
+                return 0
+        else:
+            return False
+
+    def get_correct_weight(self):
+        """Get correct weight of body"""
+        if self.__calculate() is True:
+            if self.__bmi < (18.5 / self.__rate):
+                return (18.5 / self.__rate) * (self.__height ** 2)
+            elif self.__bmi >= (25 / self.__rate):
+                return (24.99 / self.__rate) * (self.__height ** 2)
+            else:
+                return (self.__perfect_bmi / self.__rate) * (self.__height ** 2)
+        else:
+            return False
+
 
     def __set_weight(self, person_weight):
         """Set width."""
