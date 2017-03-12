@@ -134,6 +134,3 @@ class Square(Figure):
 
     def is_closed_figure(self):
         return True
-
-p = Circle('a')
-print(p.get_circuit())
