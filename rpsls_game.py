@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import importlib
 from rpsls.lizard import Lizard
 from rpsls.rock import Rock
 from rpsls.real_player import RealPlayer
@@ -11,7 +12,7 @@ from rpsls.ai_player import AiPlayer
 
 class RPSLSGame:
 
-    APPLICATION_NAME = 'Application: FAMILY'
+    APPLICATION_NAME = 'Application: RPSLS'
     LINE_LENGTH = 50
 
     def run(self):
@@ -46,12 +47,30 @@ class RPSLSGame:
     def display_app_menu(self):
         """Display application menu."""
         print('MENU:')
-        print('1. Show all family persons')
+        print('1. Start new game')
         print('2. Show family person')
         print('3. Add person')
         print('4. Remove person')
         print('5. Close application')
         self.print_line()
+
+    def get_menu_option_from_strem(self):
+        """Get option from stream."""
+        is_incorrect = True
+        while is_incorrect:
+            option_number = input('Select option [1-5]: ')
+            if option_number.isdigit():
+                option_number = int(option_number)
+                if option_number in [1, 2, 3, 4, 5]:
+                    is_incorrect = False
+                else:
+                    print('Option number must by from 1 to 5.')
+                    self.print_line()
+            else:
+                print('Option number must by an integer number.')
+                self.print_line()
+        self.print_line()
+        return option_number
 
     def close_app(self):
         """Close application."""
@@ -62,15 +81,10 @@ class RPSLSGame:
         """Print line."""
         print('-' * self.LINE_LENGTH)
 
-rpsls_game = RPSLSGame()
+#rpsls_game = RPSLSGame()
 #rpsls_game.run()
 
-ala = 'ala'
-ma_kota = 'ma kota'
-
-print('ala'.join('kota'))
-
-#rock = Rock
-#rock2 = Rock
-
-#print(rock == rock2)
+my_module = importlib.import_module("rpsls.rock")
+MyClass = getattr(my_module, "Rock")
+instance = MyClass()
+print(instance)
