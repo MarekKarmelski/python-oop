@@ -54,9 +54,8 @@ class BMI:
         else:
             return False
 
-
     def __set_weight(self, person_weight):
-        """Set width."""
+        """Set weight."""
         self.__weight = person_weight
 
     def __set_height(self, person_height):
